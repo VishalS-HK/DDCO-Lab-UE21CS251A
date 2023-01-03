@@ -1,0 +1,67 @@
+#! /opt/homebrew/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+S_0x14ae07f90 .scope module, "xor2" "xor2" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+o0x140030010 .functor BUFZ 1, C4<z>; HiZ drive
+o0x140030040 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x14ae1d140 .functor XOR 1, o0x140030010, o0x140030040, C4<0>, C4<0>;
+v0x14ae08100_0 .net "a", 0 0, o0x140030010;  0 drivers
+v0x14ae1cde0_0 .net "b", 0 0, o0x140030040;  0 drivers
+v0x14ae1ce80_0 .net "y", 0 0, L_0x14ae1d140;  1 drivers
+S_0x14ae07310 .scope module, "xor_tb" "xor_tb" 3 1;
+ .timescale 0 0;
+L_0x14ae1d230 .functor XOR 1, v0x14ae1cf60_0, v0x14ae1d010_0, C4<0>, C4<0>;
+v0x14ae1cf60_0 .var "a", 0 0;
+v0x14ae1d010_0 .var "b", 0 0;
+v0x14ae1d0b0_0 .net "y", 0 0, L_0x14ae1d230;  1 drivers
+    .scope S_0x14ae07310;
+T_0 ;
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x14ae1cf60_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x14ae1d010_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x14ae1cf60_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x14ae1d010_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x14ae1cf60_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x14ae1d010_0, 0, 1;
+    %delay 15, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x14ae1cf60_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x14ae1d010_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0x14ae07310;
+T_1 ;
+    %vpi_call 3 21 "$monitor", $time, "   a = %b, b = %b, y = %b", v0x14ae1cf60_0, v0x14ae1d010_0, v0x14ae1d0b0_0 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x14ae07310;
+T_2 ;
+    %vpi_call 3 26 "$dumpfile", "xor_tb.vcd" {0 0 0};
+    %vpi_call 3 27 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x14ae07310 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "xor2.v";
+    "xor_tb.v";
