@@ -15,3 +15,8 @@ And finally, to view the waveform, use the following command ⬇️
 ```
 gtkwave <image name>.vcd
 ```
+
+<h2 align="center"><b>Contributors 🫂</b></h2>
+<a href="https://github.com/VishalS-HK/DDCO-Lab-UE21CS251A/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=VishalS-HK/DDCO-Lab-UE21CS251A" />
+</a>
